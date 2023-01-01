@@ -1,7 +1,7 @@
 # village-banking cross plartform application 
-# a react native application written in pure javascript with 
-# clone the project and run npm install then 
-# npm start to run the application
+a react native application written in pure javascript with 
+clone the project and run npm install then 
+npm start to run the application
 
 
 feel free to contact me for any help
