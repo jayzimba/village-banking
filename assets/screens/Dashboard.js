@@ -1,11 +1,13 @@
 import {
-    StyleSheet,
-    SafeAreaView,
-    Text,
-    View,
-    TouchableOpacity,
-  } from "react-native";
-import React from "react";
+  StyleSheet,
+  SafeAreaView,
+  Text,
+  View,
+  TouchableOpacity,
+  Share,
+  Modal,
+} from "react-native";
+import React, { useState } from "react";
 import {
   MaterialCommunityIcons,
   Ionicons,
@@ -15,8 +17,34 @@ import {
   MaterialIcons,
   Entypo,
 } from "@expo/vector-icons";
-import {COLORS} from "../../assets/Colors";
+import { COLORS } from "../../assets/Colors";
+import Account from "./Account";
+import AboutUs from "./AboutUs";
+import PrivacyPolicy from "./PrivacyPolicy";
+
 export default function Dashboard() {
+  const [showAccount, setShowAccount] = React.useState(false);
+  const [showPrivacyPolicy, setShowPrivacyPolicy] = React.useState(false);
+  const [showAboutUs, setShowAboutUs] = React.useState(false);
+  const onShare = async () => {
+    try {
+      const result = await Share.share({
+        message:
+          "Download the Sunga Village App on the Play Store or Apple Store by searching 'Sunga Village Banking'",
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
   return (
     <View>
       <View
@@ -41,6 +69,7 @@ export default function Dashboard() {
             justifyContent: "center",
             marginRight: 5,
           }}
+          onPress={() => setShowAccount(true)}
         >
           <MaterialIcons name="account-circle" size={30} color={COLORS.gray} />
           <Text style={{ color: COLORS.gray, fontSize: 12 }}>Account</Text>
@@ -58,7 +87,10 @@ export default function Dashboard() {
 
       <View style={styles.baxContainer}>
         <View style={styles.box}>
-          <TouchableOpacity style={styles.inner}>
+          <TouchableOpacity
+            style={styles.inner}
+            onPress={() => setShowAccount(true)}
+          >
             <Ionicons name="person" size={35} color={COLORS.gray} />
             <Text style={styles.bottomText}>Acount</Text>
           </TouchableOpacity>
@@ -98,19 +130,25 @@ export default function Dashboard() {
           </TouchableOpacity>
         </View>
         <View style={styles.box}>
-          <TouchableOpacity style={styles.inner}>
+          <TouchableOpacity style={styles.inner} onPress={onShare}>
             <Entypo name="share" size={35} color={COLORS.gray} />
             <Text style={styles.bottomText}>Share</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.box}>
-          <TouchableOpacity style={styles.inner}>
+          <TouchableOpacity
+            style={styles.inner}
+            onPress={() => setShowPrivacyPolicy(true)}
+          >
             <MaterialIcons name="policy" size={35} color={COLORS.gray} />
             <Text style={styles.bottomText}>Privacy Policy</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.box}>
-          <TouchableOpacity style={styles.inner}>
+          <TouchableOpacity
+            style={styles.inner}
+            onPress={() => setShowAboutUs(true)}
+          >
             <AntDesign name="infocirlce" size={35} color={COLORS.gray} />
             <Text style={styles.bottomText}>About Us</Text>
           </TouchableOpacity>
@@ -143,6 +181,21 @@ export default function Dashboard() {
             Version {"1.0"}
           </Text>
         </View>
+        <Modal visible={showAccount} animationType="slide">
+          <SafeAreaView>
+            <Account />
+          </SafeAreaView>
+        </Modal>
+        <Modal visible={showPrivacyPolicy} animationType="slide">
+          <SafeAreaView>
+            <PrivacyPolicy />
+          </SafeAreaView>
+        </Modal>
+        <Modal visible={showAboutUs} animationType="slide">
+          <SafeAreaView>
+            <AboutUs />
+          </SafeAreaView>
+        </Modal>
       </View>
     </View>
   );

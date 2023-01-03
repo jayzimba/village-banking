@@ -6,19 +6,23 @@ import {
   View,
   TouchableOpacity,
 } from "react-native";
+import AboutUs from "./assets/screens/AboutUs";
+import Account from "./assets/screens/Account";
 import Dashboard from "./assets/screens/Dashboard";
-import Login from './assets/screens/Login';
+import Login from "./assets/screens/Login";
+import PrivacyPolicy from "./assets/screens/PrivacyPolicy";
 import Signup from "./assets/screens/Signup";
-
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="auto" />
-      {/* <Dashboard/>  */}
-      <Login/>
+      <Dashboard />
+      {/* <Login/> */}
       {/* <Signup/> */}
-
+      {/* <Account /> */}
+      {/* <AboutUs /> */}
+      {/* <PrivacyPolicy /> */}
     </SafeAreaView>
   );
 }
@@ -26,8 +30,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     marginHorizontal: 10,
   },
-  
 });
