@@ -9,6 +9,7 @@ import {
 import AboutUs from "./assets/screens/AboutUs";
 import Account from "./assets/screens/Account";
 import Dashboard from "./assets/screens/Dashboard";
+import Groups from "./assets/screens/Groups";
 import Login from "./assets/screens/Login";
 import PrivacyPolicy from "./assets/screens/PrivacyPolicy";
 import Signup from "./assets/screens/Signup";
@@ -23,6 +24,7 @@ export default function App() {
       {/* <Account /> */}
       {/* <AboutUs /> */}
       {/* <PrivacyPolicy /> */}
+      {/* <Groups /> */}
     </SafeAreaView>
   );
 }

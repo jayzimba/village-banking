@@ -21,11 +21,15 @@ import { COLORS } from "../../assets/Colors";
 import Account from "./Account";
 import AboutUs from "./AboutUs";
 import PrivacyPolicy from "./PrivacyPolicy";
+import Groups from "./Groups";
+import Deposit from "./Deposit";
 
 export default function Dashboard() {
   const [showAccount, setShowAccount] = React.useState(false);
   const [showPrivacyPolicy, setShowPrivacyPolicy] = React.useState(false);
   const [showAboutUs, setShowAboutUs] = React.useState(false);
+  const [showGroups, setShowGroups] = React.useState(false);
+  const [showDeposit, setShowDeposit] = React.useState(false);
   const onShare = async () => {
     try {
       const result = await Share.share({
@@ -102,7 +106,10 @@ export default function Dashboard() {
           </TouchableOpacity>
         </View>
         <View style={styles.box}>
-          <TouchableOpacity style={styles.inner}>
+          <TouchableOpacity
+            style={styles.inner}
+            onPress={() => setShowDeposit(true)}
+          >
             <MaterialCommunityIcons
               name="bank-transfer-in"
               size={45}
@@ -118,7 +125,10 @@ export default function Dashboard() {
           </TouchableOpacity>
         </View>
         <View style={styles.box}>
-          <TouchableOpacity style={styles.inner}>
+          <TouchableOpacity
+            style={styles.inner}
+            onPress={() => setShowGroups(true)}
+          >
             <FontAwesome name="group" size={35} color={COLORS.gray} />
             <Text style={styles.bottomText}>Groups</Text>
           </TouchableOpacity>
@@ -194,6 +204,16 @@ export default function Dashboard() {
         <Modal visible={showAboutUs} animationType="slide">
           <SafeAreaView>
             <AboutUs />
+          </SafeAreaView>
+        </Modal>
+        <Modal visible={showGroups} animationType="slide">
+          <SafeAreaView>
+            <Groups />
+          </SafeAreaView>
+        </Modal>
+        <Modal visible={showDeposit} animationType="slide">
+          <SafeAreaView>
+            <Deposit />
           </SafeAreaView>
         </Modal>
       </View>
