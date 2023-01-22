@@ -24,25 +24,21 @@ export default function Group(props) {
           <FontAwesome name="group" size={35} color={COLORS.gray} />
         </View>
         <View>
-          <Text style={styles.name}>{"group name"}</Text>
+          <Text style={styles.name}>{props.name}</Text>
           <Text style={{ color: "#78797a", fontSize: 12 }}>
-            {"Admin contact: " + "0971141085"}
+            {"Admin contact: " + props.admin}
           </Text>
-          <Text>Members: {0}</Text>
+          <Text>Members: {props.total_members}</Text>
         </View>
       </View>
 
-      {/* {props.vote ? (
+      {props.join ? (
         <View
-          style={props.selected ? styles.voteNowBtnSelected : styles.voteNowBtn}
+          style={props.selected ? styles.joinNowBtnSelected : styles.joinNowBtn}
         >
           <Text style={{ color: "white" }}>Join</Text>
         </View>
-      ) : null} */}
-
-      <View style={styles.voteNowBtn}>
-        <Text style={{ color: "white" }}>Join</Text>
-      </View>
+      ) : null}
     </View>
   );
 }
@@ -51,7 +47,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
-    width: "100%",
+    width: "95%",
     justifyContent: "space-between",
     borderBottomWidth: 0.5,
     borderBottomColor: "#eded",
@@ -65,7 +61,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
   },
-  voteNowBtn: {
+  joinNowBtn: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
@@ -75,7 +71,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.gray,
     borderRadius: 10,
   },
-  voteNowBtnSelected: {
+  joinNowBtnSelected: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",

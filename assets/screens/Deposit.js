@@ -8,19 +8,29 @@ import {
 } from "react-native";
 import React from "react";
 import BackToHome from "./../components/BackToHome";
-import { Stack, TextInput, IconButton, Button } from "@react-native-material/core";
+import {
+  Stack,
+  TextInput,
+  IconButton,
+  Button,
+} from "@react-native-material/core";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { COLORS } from "../../assets/Colors";
+import { PayWithFlutterwave, close } from "flutterwave-react-native";
 import {
-    MaterialCommunityIcons,
-    Ionicons,
-    FontAwesome5,
-    FontAwesome,
-    AntDesign,
-    MaterialIcons,
-    Entypo,
-  } from "@expo/vector-icons";
+  MaterialCommunityIcons,
+  Ionicons,
+  FontAwesome5,
+  FontAwesome,
+  AntDesign,
+  MaterialIcons,
+  Entypo,
+} from "@expo/vector-icons";
 export default function Deposit() {
+  const [name, setName] = React.useState("");
+  const [amount, setAmount] = React.useState("");
+  const [contact, setContact] = React.useState("");
+
   return (
     <View>
       <TouchableOpacity onPress={() => Alert("Back Button Clicked")}>
@@ -36,31 +46,95 @@ export default function Deposit() {
 
         <TextInput
           variant="standard"
-          label="Name"
+          //   label="Name"
+          placeholder="Name"
           style={{ margin: 16 }}
           color={COLORS.gray}
+          onChangeText={(name) => setName(name)}
         />
         <TextInput
           variant="standard"
-          label="Amount"
+          //   label="Contact"
+          placeholder="Contact"
           style={{ margin: 16 }}
           color={COLORS.gray}
           keyboardType="numeric"
+          maxLength={10}
+          onChangeText={(contact) => setContact(contact)}
+        />
+        <TextInput
+          variant="standard"
+          //   label="Amount"
+          placeholder="Amount"
+          style={{ margin: 16 }}
+          color={COLORS.gray}
+          keyboardType="numeric"
+          onChangeText={(amount) => setAmount(amount)}
         />
 
-        {/* <IconButton
-          icon={(props) => (
-            <MaterialCommunityIcons
-              name="bank-transfer-in"
-              size={45}
-              color={COLORS.gray}
-            />
+        <View style={{flexDirection:"row", alignItems:"center"}}>
+          <IconButton
+            onPress={() => alert(name + " " + contact + " K" + amount)}
+            icon={(props) => (
+              <MaterialCommunityIcons
+                name="bank-transfer-in"
+                size={45}
+                color={COLORS.gray}
+              />
+            )}
+          />
+          <Text style={{color: COLORS.gray}}>Click to Verify Details</Text>
+        </View>
+
+        <PayWithFlutterwave
+          onRedirect={() => Alert.alert("Deposit Model Closed")}
+          options={{
+            tx_ref: Date.now().toString(),
+            authorization: "FLWPUBK-aa9cc71e514393d4bfc408610089dcf2-X",
+            customer: {
+              email: "customer@villagebankinigapp.com",
+              phone_number: contact.toString(),
+              name: name.toString(),
+            },
+            amount: amount.toString(),
+            currency: "ZMW",
+            payment_options: "ussd",
+          }}
+          customButton={(props) => (
+            <TouchableOpacity
+              style={styles.payButtton}
+              onPress={props.onPress}
+              isBusy={props.isInitializing}
+              disabled={false}
+            >
+              <Ionicons name="cash" size={24} color="white" />
+              <Text
+                style={{
+                  color: "white",
+                  fontSize: 18,
+                  fontWeight: "500",
+                  marginLeft: 10,
+                }}
+              >
+                Deposit Now
+              </Text>
+            </TouchableOpacity>
           )}
-        /> */}
-         <Button variant="Contained" title="Deposit" color={COLORS.accent} style={{marginTop:30}} />
+        />
       </ScrollView>
     </View>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  payButtton: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 10,
+    marginHorizontal: 35,
+    marginVertical: 15,
+    backgroundColor: COLORS.accent,
+    borderRadius: 5,
+  },
+});
