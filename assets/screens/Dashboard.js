@@ -24,7 +24,7 @@ import PrivacyPolicy from "./PrivacyPolicy";
 import Groups from "./Groups";
 import Deposit from "./Deposit";
 
-export default function Dashboard() {
+export default function Dashboard({ navigation }) {
   const [showAccount, setShowAccount] = React.useState(false);
   const [showPrivacyPolicy, setShowPrivacyPolicy] = React.useState(false);
   const [showAboutUs, setShowAboutUs] = React.useState(false);
@@ -73,7 +73,7 @@ export default function Dashboard() {
             justifyContent: "center",
             marginRight: 5,
           }}
-          onPress={() => setShowAccount(true)}
+          onPress={() => navigation.navigate("Account")}
         >
           <MaterialIcons name="account-circle" size={30} color={COLORS.gray} />
           <Text style={{ color: COLORS.gray, fontSize: 12 }}>Account</Text>
@@ -93,14 +93,14 @@ export default function Dashboard() {
         <View style={styles.box}>
           <TouchableOpacity
             style={styles.inner}
-            onPress={() => setShowAccount(true)}
+            onPress={() => navigation.navigate("Account")}
           >
             <Ionicons name="person" size={35} color={COLORS.gray} />
             <Text style={styles.bottomText}>Acount</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.box}>
-          <TouchableOpacity style={styles.inner}>
+          <TouchableOpacity style={styles.inner} onPress={()=>navigation.navigate("Loan")}>
             <FontAwesome5 name="money-bill" size={35} color={COLORS.gray} />
             <Text style={styles.bottomText}>Get Loan</Text>
           </TouchableOpacity>
@@ -108,7 +108,7 @@ export default function Dashboard() {
         <View style={styles.box}>
           <TouchableOpacity
             style={styles.inner}
-            onPress={() => setShowDeposit(true)}
+            onPress={() => navigation.navigate("Deposit")}
           >
             <MaterialCommunityIcons
               name="bank-transfer-in"
@@ -119,7 +119,7 @@ export default function Dashboard() {
           </TouchableOpacity>
         </View>
         <View style={styles.box}>
-          <TouchableOpacity style={styles.inner}>
+          <TouchableOpacity style={styles.inner} onPress={()=>navigation.navigate("Statement")}>
             <Ionicons name="receipt" size={35} color={COLORS.gray} />
             <Text style={styles.bottomText}>Statement</Text>
           </TouchableOpacity>
@@ -127,14 +127,14 @@ export default function Dashboard() {
         <View style={styles.box}>
           <TouchableOpacity
             style={styles.inner}
-            onPress={() => setShowGroups(true)}
+            onPress={() => navigation.navigate("Groups")}
           >
             <FontAwesome name="group" size={35} color={COLORS.gray} />
             <Text style={styles.bottomText}>Groups</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.box}>
-          <TouchableOpacity style={styles.inner}>
+          <TouchableOpacity style={styles.inner} onPress={()=>navigation.navigate("MyLoan")}>
             <FontAwesome5 name="money-check" size={35} color={COLORS.gray} />
             <Text style={styles.bottomText}>My Loan</Text>
           </TouchableOpacity>
@@ -148,7 +148,7 @@ export default function Dashboard() {
         <View style={styles.box}>
           <TouchableOpacity
             style={styles.inner}
-            onPress={() => setShowPrivacyPolicy(true)}
+            onPress={() => navigation.navigate("PrivacyPolicy")}
           >
             <MaterialIcons name="policy" size={35} color={COLORS.gray} />
             <Text style={styles.bottomText}>Privacy Policy</Text>
@@ -157,7 +157,7 @@ export default function Dashboard() {
         <View style={styles.box}>
           <TouchableOpacity
             style={styles.inner}
-            onPress={() => setShowAboutUs(true)}
+            onPress={() => navigation.navigate(AboutUs)}
           >
             <AntDesign name="infocirlce" size={35} color={COLORS.gray} />
             <Text style={styles.bottomText}>About Us</Text>
@@ -191,31 +191,6 @@ export default function Dashboard() {
             Version {"1.0"}
           </Text>
         </View>
-        <Modal visible={showAccount} animationType="slide">
-          <SafeAreaView>
-            <Account />
-          </SafeAreaView>
-        </Modal>
-        <Modal visible={showPrivacyPolicy} animationType="slide">
-          <SafeAreaView>
-            <PrivacyPolicy />
-          </SafeAreaView>
-        </Modal>
-        <Modal visible={showAboutUs} animationType="slide">
-          <SafeAreaView>
-            <AboutUs />
-          </SafeAreaView>
-        </Modal>
-        <Modal visible={showGroups} animationType="slide">
-          <SafeAreaView>
-            <Groups />
-          </SafeAreaView>
-        </Modal>
-        <Modal visible={showDeposit} animationType="slide">
-          <SafeAreaView>
-            <Deposit />
-          </SafeAreaView>
-        </Modal>
       </View>
     </View>
   );

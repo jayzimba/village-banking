@@ -24,13 +24,7 @@ import BackToHome from "../components/BackToHome";
 export default function PrivacyPolicy() {
   return (
     <View>
-      <TouchableOpacity
-        onPress={() => {
-          alert("Back Button Clicked");
-        }}
-      >
-        <BackToHome />
-      </TouchableOpacity>
+      
       <ScrollView
         showsVerticalScrollIndicator="false"
         style={{ marginBottom: 80, paddingBottom: 30 }}

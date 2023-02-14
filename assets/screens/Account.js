@@ -22,13 +22,12 @@ import { COLORS } from "../../assets/Colors";
 import Heading from "../components/Heading";
 import BackToHome from "../components/BackToHome";
 
-export default function Account() {
+export default function Account({ props }) {
+  const [hide, setHide] = React.useState(false);
+
   return (
     <View>
       {/* <Heading /> */}
-      <TouchableOpacity onPress={() => Alert.alert("Back Button Clicked")}>
-        <BackToHome />
-      </TouchableOpacity>
 
       <View style={{ alignItems: "center", marginBottom: 20 }}>
         <EvilIcons name="user" size={100} color={COLORS.gray} />

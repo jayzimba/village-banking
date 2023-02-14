@@ -53,7 +53,8 @@ const styles = StyleSheet.create({
     borderBottomColor: "#eded",
     marginBottom: 10,
     paddingBottom: 10,
-    marginHorizontal: 10,
+    marginHorizontal: 2,
+    marginVertical:20
   },
 
   name: {
@@ -65,8 +66,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    padding: 15,
-    width: 100,
+    padding: 10,
+    width: 70,
     marginVertical: 10,
     backgroundColor: COLORS.gray,
     borderRadius: 10,
@@ -75,8 +76,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    padding: 15,
-    width: 100,
+    padding: 10,
+    width: 70,
     marginVertical: 10,
     backgroundColor: "#afafaf",
     borderRadius: 10,

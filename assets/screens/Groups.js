@@ -85,16 +85,14 @@ export default class Groups extends Component {
   render() {
     return (
       <View>
-        <TouchableOpacity onPress={() => alert("Back Button Clicked")}>
-          <BackToHome />
-        </TouchableOpacity>
+       
         <ScrollView
           bounces={false}
           horizontal={false}
           showsHorizontalScrollIndicator={false}
           style={{ paddingLeft: 10 }}
         >
-          {this.state.groupData.map((item, index) => (
+          {/* {this.state.groupData.map((item, index) => (
             <View key={item.id}>
               <TouchableOpacity
                 onPress={() => {
@@ -112,7 +110,42 @@ export default class Groups extends Component {
                 />
               </TouchableOpacity>
             </View>
-          ))}
+          ))} */}
+          <Group
+                  name={"item.name"}
+                  total_members={"item.total_members"}
+                  admin={"item.admin_contact"}
+                  join={true}
+                  selected={"this.state.selected"}
+                />
+          <Group
+                  name={"item.name"}
+                  total_members={"item.total_members"}
+                  admin={"item.admin_contact"}
+                  join={true}
+                  selected={"this.state.selected"}
+                />
+          <Group
+                  name={"item.name"}
+                  total_members={"item.total_members"}
+                  admin={"item.admin_contact"}
+                  join={true}
+                  selected={"this.state.selected"}
+                />
+          <Group
+                  name={"item.name"}
+                  total_members={"item.total_members"}
+                  admin={"item.admin_contact"}
+                  join={true}
+                  selected={"this.state.selected"}
+                />
+          <Group
+                  name={"item.name"}
+                  total_members={"item.total_members"}
+                  admin={"item.admin_contact"}
+                  join={true}
+                  selected={"this.state.selected"}
+                />
         </ScrollView>
       </View>
     );

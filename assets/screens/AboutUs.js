@@ -21,11 +21,10 @@ import { COLORS } from "../../assets/Colors";
 import BackToHome from "../components/BackToHome";
 
 export default function AboutUs() {
+
   return (
     <View>
-      <TouchableOpacity onPress={() => Alert.alert("Back Button Clicked")}>
-        <BackToHome />
-      </TouchableOpacity>
+      
 
       <View style={{ alignItems: "center", marginVertical: 20 }}>
         <AntDesign name="infocirlce" size={50} color={COLORS.gray} />

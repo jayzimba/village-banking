@@ -17,7 +17,10 @@ import {
   Entypo,
 } from "@expo/vector-icons";
 import { COLORS } from "../../assets/Colors";
-export default function Login() {
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -42,7 +45,16 @@ export default function Login() {
       ></View>
 
       <View style={{ alignItems: "center" }}>
-        <Text style={{color:COLORS.gray, fontWeight:"bold", fontSize:22, marginVertical: 20}}>Login</Text>
+        <Text
+          style={{
+            color: COLORS.gray,
+            fontWeight: "bold",
+            fontSize: 22,
+            marginVertical: 20,
+          }}
+        >
+          Login
+        </Text>
 
         <View style={styles.inputView}>
           <TextInput
@@ -50,7 +62,7 @@ export default function Login() {
             placeholder="Email."
             width={"100%"}
             textContentType="emailAddress"
-            keyboardType='email-address'
+            keyboardType="email-address"
             placeholderTextColor="#003f5c"
             onChangeText={(email) => setEmail(email)}
           />
@@ -67,11 +79,14 @@ export default function Login() {
           />
         </View>
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
           <Text style={styles.signupBtn}>you dont have an account?</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.loginBtn}>
+        <TouchableOpacity
+          style={styles.loginBtn}
+          onPress={() => navigation.navigate("Dashboard")}
+        >
           <Text style={styles.loginText}>LOGIN</Text>
         </TouchableOpacity>
       </View>
@@ -97,7 +112,7 @@ const styles = StyleSheet.create({
     alignContent: "center",
   },
   inputView: {
-    backgroundColor:'#cae1fd',
+    backgroundColor: "#cae1fd",
     borderRadius: 30,
     width: "90%",
     height: 45,
@@ -114,14 +129,13 @@ const styles = StyleSheet.create({
     height: 30,
     marginBottom: 30,
   },
-  loginBtn:
-  {
-    width:"80%",
-    borderRadius:25,
-    height:50,
-    alignItems:"center",
-    justifyContent:"center",
-    marginTop:40,
-    backgroundColor:COLORS.gray,
-  }
+  loginBtn: {
+    width: "80%",
+    borderRadius: 25,
+    height: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 40,
+    backgroundColor: COLORS.gray,
+  },
 });

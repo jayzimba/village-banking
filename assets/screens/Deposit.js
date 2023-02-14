@@ -32,11 +32,7 @@ export default function Deposit() {
   const [contact, setContact] = React.useState("");
 
   return (
-    <View>
-      <TouchableOpacity onPress={() => Alert("Back Button Clicked")}>
-        <BackToHome />
-      </TouchableOpacity>
-
+    <View style={{ marginTop: 20 }}>
       <ScrollView style={{ marginHorizontal: 20 }}>
         <Text>
           You are About to initiate your deposit to you group village banking
@@ -72,18 +68,11 @@ export default function Deposit() {
           onChangeText={(amount) => setAmount(amount)}
         />
 
-        <View style={{flexDirection:"row", alignItems:"center"}}>
-          <IconButton
-            onPress={() => alert(name + " " + contact + " K" + amount)}
-            icon={(props) => (
-              <MaterialCommunityIcons
-                name="bank-transfer-in"
-                size={45}
-                color={COLORS.gray}
-              />
-            )}
-          />
-          <Text style={{color: COLORS.gray}}>Click to Verify Details</Text>
+        <View style={{ flexDirection: "row", alignItems: "center",marginStart: 16}}>
+      
+          <Text style={{ color: COLORS.gray}}>
+            Click to Verify Details
+          </Text>
         </View>
 
         <PayWithFlutterwave
