@@ -18,7 +18,7 @@ import {
 } from "@expo/vector-icons";
 import { COLORS } from "../../assets/Colors";
 
-export default function Signup() {
+export default function Signup({navigation}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [cpassword, setCPassword] = useState("");
@@ -110,7 +110,7 @@ export default function Signup() {
           />
         </View>
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=>navigation.navigate("Login")}>
           <Text style={styles.gotToLogin}>Go to Login</Text>
         </TouchableOpacity>
 

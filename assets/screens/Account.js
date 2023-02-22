@@ -7,7 +7,7 @@ import {
   TextInput,
   Alert,
 } from "react-native";
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   MaterialCommunityIcons,
   Ionicons,
@@ -21,21 +21,22 @@ import {
 import { COLORS } from "../../assets/Colors";
 import Heading from "../components/Heading";
 import BackToHome from "../components/BackToHome";
+import React, { Component } from "react";
+import { useRoute } from "@react-navigation/native";
 
-export default function Account({ props }) {
-  const [hide, setHide] = React.useState(false);
-
+const DataScreen = () => {
+  const route = useRoute();
   return (
-    <View>
+    <View style={{marginTop:20}}>
       {/* <Heading /> */}
 
       <View style={{ alignItems: "center", marginBottom: 20 }}>
         <EvilIcons name="user" size={100} color={COLORS.gray} />
         <View style={{ alignItems: "center" }}>
           <Text style={{ color: COLORS.gray, marginBottom: 3 }}>
-            {"@patrick123"}
+            {route.params.Data.email}
           </Text>
-          <Text style={{ color: COLORS.gray }}>+260 {"777603060"}</Text>
+          <Text style={{ color: COLORS.gray }}>{route.params.Data.name}</Text>
         </View>
       </View>
 
@@ -50,7 +51,7 @@ export default function Account({ props }) {
         >
           Group:
         </Text>
-        <Text style={{ color: COLORS.gray }}> {"Pamozi"}</Text>
+        <Text style={{ color: COLORS.gray }}> {route.params.Data.gname}</Text>
       </View>
       <View style={styles.inputView}>
         <Text
@@ -63,21 +64,9 @@ export default function Account({ props }) {
         >
           Contact:
         </Text>
-        <Text style={{ color: COLORS.gray }}> +260 {"7776030"}</Text>
+        <Text style={{ color: COLORS.gray }}> +26{route.params.Data.contact}</Text>
       </View>
-      <View style={styles.inputView}>
-        <Text
-          style={{
-            color: COLORS.gray,
-            marginBottom: 3,
-            fontSize: 18,
-            fontWeight: "bold",
-          }}
-        >
-          Address:
-        </Text>
-        <Text style={{ color: COLORS.gray }}> {"Chifubu 234"}</Text>
-      </View>
+
       <View style={styles.inputView}>
         <Text
           style={{
@@ -89,7 +78,7 @@ export default function Account({ props }) {
         >
           Total Deposits:
         </Text>
-        <Text style={{ color: COLORS.gray }}> K {3456}</Text>
+        <Text style={{ color: COLORS.gray }}> K {route.params.Data.savings}</Text>
       </View>
       <View style={styles.inputView}>
         <Text
@@ -102,10 +91,41 @@ export default function Account({ props }) {
         >
           Loan Legible Amount:
         </Text>
-        <Text style={{ color: COLORS.gray }}> K {3456 * 2}</Text>
+        <Text style={{ color: COLORS.gray }}> K {route.params.Data.savings * 3}</Text>
       </View>
     </View>
   );
+};
+export default class Account extends Component {
+  state = {
+    memberData: [],
+    loanLegibleAmount: 0,
+  };
+
+  fetchMemberData = async () => {
+    fetch("http://172.20.10.4/vb/fetchMemberData.php")
+      .then((response) => response.json())
+      .then((result) => {
+        if (result == "no member found") {
+          this.setState({ memberData: [] });
+        } else {
+          this.setState({ memberData: result });
+        }
+      })
+      .catch((error) => console.log("error", error));
+  };
+
+  componentDidMount() {
+    this.fetchMemberData();
+  }
+
+  render() {
+    return (
+      <View>
+        <DataScreen />
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({

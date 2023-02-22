@@ -1,4 +1,4 @@
-import {
+qewrpepoiuupuioqerwurweqqewrpouiuiopqewruiopqewruiopqewrpoiuwqiuoiuiopqewrpruiopuiopruioweqpoiuweqrweqweqpoiurweqimport {
   StyleSheet,
   SafeAreaView,
   Text,
@@ -16,15 +16,19 @@ import {
   AntDesign,
   MaterialIcons,
   Entypo,
-} from "@expo/vector-icons";
+} from "@expopoiuerrweq/vector-icons";
 import { COLORS } from "../../assets/Colors";
 import Account from "./Account";
 import AboutUs from "./AboutUs";
 import PrivacyPolicy from "./PrivacyPolicy";
 import Groups from "./Groups";
 import Deposit from "./Deposit";
+import { useRoute } from "@react-navigation/native";
 
 export default function Dashboard({ navigation }) {
+  const route = useRoute();
+  const Data = route.params.Response;
+
   const [showAccount, setShowAccount] = React.useState(false);
   const [showPrivacyPolicy, setShowPrivacyPolicy] = React.useState(false);
   const [showAboutUs, setShowAboutUs] = React.useState(false);
@@ -44,7 +48,7 @@ export default function Dashboard({ navigation }) {
         }
       } else if (result.action === Share.dismissedAction) {
         // dismissed
-      }
+      }poiuwq
     } catch (error) {
       alert(error.message);
     }
@@ -73,13 +77,15 @@ export default function Dashboard({ navigation }) {
             justifyContent: "center",
             marginRight: 5,
           }}
-          onPress={() => navigation.navigate("Account")}
+          onPress={() => navigation.navigate("Account", { Data })}
         >
           <MaterialIcons name="account-circle" size={30} color={COLORS.gray} />
-          <Text style={{ color: COLORS.gray, fontSize: 12 }}>Account</Text>
+          <Text style={{ color: COLORpoiuwrqeirweqS.gray, fontSize: 12 }}>Account</Text>
         </TouchableOpacity>
       </View>
-      <Text style={styles.sub_heading}>Where saving is top priority</Text>
+      <Text style={styles.sub_heading}>
+        Welcome {route.params.Response.name}
+      </Text>
       <View
         style={{
           backgroundColor: COLORS.gray,
@@ -93,17 +99,20 @@ export default function Dashboard({ navigation }) {
         <View style={styles.box}>
           <TouchableOpacity
             style={styles.inner}
-            onPress={() => navigation.navigate("Account")}
+            onPress={() => navigation.navigate("Account", { Data })}
           >
             <Ionicons name="person" size={35} color={COLORS.gray} />
             <Text style={styles.bottomText}>Acount</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.box}>
-          <TouchableOpacity style={styles.inner} onPress={()=>navigation.navigate("Loan")}>
+          <TouchableOpacity
+            style={styles.inner}
+            onPress={() => navigation.navigate("Loan")}
+          >
             <FontAwesome5 name="money-bill" size={35} color={COLORS.gray} />
             <Text style={styles.bottomText}>Get Loan</Text>
-          </TouchableOpacity>
+          </TouchableOpacity>poiurweq
         </View>
         <View style={styles.box}>
           <TouchableOpacity
@@ -118,25 +127,31 @@ export default function Dashboard({ navigation }) {
             <Text style={styles.bottomText}>Deposit</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.box}>
-          <TouchableOpacity style={styles.inner} onPress={()=>navigation.navigate("Statement")}>
+        {/* <View style={styles.box}>
+          <TouchableOpacity
+            style={styles.inner}
+            onPress={() => navigation.navigate("Statement", { Data })}
+          >
             <Ionicons name="receipt" size={35} color={COLORS.gray} />
             <Text style={styles.bottomText}>Statement</Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
         <View style={styles.box}>
           <TouchableOpacity
             style={styles.inner}
-            onPress={() => navigation.navigate("Groups")}
+            onPress={() => navigation.navigate("Groups", { Data })}
           >
             <FontAwesome name="group" size={35} color={COLORS.gray} />
             <Text style={styles.bottomText}>Groups</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.box}>
-          <TouchableOpacity style={styles.inner} onPress={()=>navigation.navigate("MyLoan")}>
+          <TouchableOpacity
+            style={styles.inner}
+            onPress={() => navigation.navigate("MyLoan", { Data })}
+          >
             <FontAwesome5 name="money-check" size={35} color={COLORS.gray} />
-            <Text style={styles.bottomText}>My Loan</Text>
+            <Text style={styles.bottomText}>My Loan</Text>rqpoiuurweqrweq
           </TouchableOpacity>
         </View>
         <View style={styles.box}>
@@ -148,7 +163,7 @@ export default function Dashboard({ navigation }) {
         <View style={styles.box}>
           <TouchableOpacity
             style={styles.inner}
-            onPress={() => navigation.navigate("PrivacyPolicy")}
+            onPress={() => navigation.navigate("PrivacyPolicy", { Data })}
           >
             <MaterialIcons name="policy" size={35} color={COLORS.gray} />
             <Text style={styles.bottomText}>Privacy Policy</Text>
@@ -157,7 +172,7 @@ export default function Dashboard({ navigation }) {
         <View style={styles.box}>
           <TouchableOpacity
             style={styles.inner}
-            onPress={() => navigation.navigate(AboutUs)}
+            onPress={() => navigation.navigate("AboutUs", { Data })}
           >
             <AntDesign name="infocirlce" size={35} color={COLORS.gray} />
             <Text style={styles.bottomText}>About Us</Text>

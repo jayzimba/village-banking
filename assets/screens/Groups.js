@@ -21,7 +21,7 @@ export default class Groups extends Component {
     selected: false,
   };
 
-  AddGroupToMemberDB = () => {
+  AddMemberToGroupDB = () => {
     var group = this.state.group;
 
     var formdata = new FormData();
@@ -69,9 +69,15 @@ export default class Groups extends Component {
       .catch((error) => console.log("error", error));
   };
 
-  componentDidMount() {
-    this.fetchGroups();
-  }
+  compileALL = () => {
+    this.AddMemberToGroupDB();
+    alert(
+      "You have successfully joined " +
+        this.state.group +
+        " village banking groupp"
+    );
+    this.props.navigation.navigate("Dashboard");
+  };
 
   addNow() {
     this.AddGroupToMemberDB();
@@ -82,27 +88,29 @@ export default class Groups extends Component {
     );
   }
 
+  componentDidMount() {
+    this.fetchGroups();
+  }
+
   render() {
     return (
       <View>
-       
         <ScrollView
           bounces={false}
           horizontal={false}
           showsHorizontalScrollIndicator={false}
           style={{ paddingLeft: 10 }}
         >
-          {/* {this.state.groupData.map((item, index) => (
+          {this.state.groupData.map((item, index) => (
             <View key={item.id}>
               <TouchableOpacity
                 onPress={() => {
-                  this.addNow();
                   this.setState({ group: item.name, selected: true });
                 }}
                 disabled={this.state.selected}
               >
                 <Group
-                  name={item.name}
+                  name={item.gname}
                   total_members={item.total_members}
                   admin={item.admin_contact}
                   join={true}
@@ -110,43 +118,19 @@ export default class Groups extends Component {
                 />
               </TouchableOpacity>
             </View>
-          ))} */}
-          <Group
-                  name={"item.name"}
-                  total_members={"item.total_members"}
-                  admin={"item.admin_contact"}
-                  join={true}
-                  selected={"this.state.selected"}
-                />
-          <Group
-                  name={"item.name"}
-                  total_members={"item.total_members"}
-                  admin={"item.admin_contact"}
-                  join={true}
-                  selected={"this.state.selected"}
-                />
-          <Group
-                  name={"item.name"}
-                  total_members={"item.total_members"}
-                  admin={"item.admin_contact"}
-                  join={true}
-                  selected={"this.state.selected"}
-                />
-          <Group
-                  name={"item.name"}
-                  total_members={"item.total_members"}
-                  admin={"item.admin_contact"}
-                  join={true}
-                  selected={"this.state.selected"}
-                />
-          <Group
-                  name={"item.name"}
-                  total_members={"item.total_members"}
-                  admin={"item.admin_contact"}
-                  join={true}
-                  selected={"this.state.selected"}
-                />
+          ))}
         </ScrollView>
+
+        <TouchableOpacity
+          style={styles.voteNowBtn}
+          onPress={() => {
+            this.compileALL();
+          }}
+        >
+          <Text style={{ color: "#fff", fontSize: 20, fontWeight: "500" }}>
+            Submit Votes
+          </Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -164,5 +148,14 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.gray,
     borderRadius: 10,
     marginTop: 30,
+  },
+  voteNowBtn: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 15,
+    marginVertical: 10,
+    backgroundColor: "#0b87f3",
+    borderRadius: 10,
   },
 });
