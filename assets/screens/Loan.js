@@ -14,9 +14,9 @@ import {
   IconButton,
   Button,
 } from "@react-native-material/core";
-import { Colors } from "react-native/Libraries/NewAppScreen";
 import { COLORS } from "../../assets/Colors";
 import { PayWithFlutterwave, close } from "flutterwave-react-native";
+import { useRoute } from '@react-navigation/native';
 import {
   MaterialCommunityIcons,
   Ionicons,
@@ -26,7 +26,10 @@ import {
   MaterialIcons,
   Entypo,
 } from "@expo/vector-icons";
+
+
 export default function Loan({navigation}) {
+  const route = useRoute();
   const [name, setName] = React.useState("");
   const [amount, setAmount] = React.useState("");
   const [contact, setContact] = React.useState("");
@@ -35,6 +38,7 @@ export default function Loan({navigation}) {
   return (
     <View style={{ marginTop: 20 }}>
       <ScrollView style={{ marginHorizontal: 20 }}>
+        <Text style={{color: COLORS.accent, fontSize:18, marginBottom:7}}>Hello {route.params.Data.name}</Text>
         <Text>
           You are ligible to get a loan from your group upto x3 your total
           deposits. Note your Lona will be processed and approval will be made
@@ -53,7 +57,7 @@ export default function Loan({navigation}) {
 
         <TouchableOpacity
           style={styles.payButtton}
-          onPress={() => {Disabled == false? alert("Admin will comfirm your loan", navigation.navigate("Dashboard")): null}}
+          onPress={() => {Disabled == false? alert("Admin will comfirm your loan"): null}}
           disabled={Disabled}
         >
           <Ionicons name="cash" size={24} color="white" />

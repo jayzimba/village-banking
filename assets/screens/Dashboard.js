@@ -1,4 +1,4 @@
-qewrpepoiuupuioqerwurweqqewrpouiuiopqewruiopqewruiopqewrpoiuwqiuoiuiopqewrpruiopuiopruioweqpoiuweqrweqweqpoiurweqimport {
+import {
   StyleSheet,
   SafeAreaView,
   Text,
@@ -16,7 +16,7 @@ import {
   AntDesign,
   MaterialIcons,
   Entypo,
-} from "@expopoiuerrweq/vector-icons";
+} from "@expo/vector-icons";
 import { COLORS } from "../../assets/Colors";
 import Account from "./Account";
 import AboutUs from "./AboutUs";
@@ -28,7 +28,6 @@ import { useRoute } from "@react-navigation/native";
 export default function Dashboard({ navigation }) {
   const route = useRoute();
   const Data = route.params.Response;
-
   const [showAccount, setShowAccount] = React.useState(false);
   const [showPrivacyPolicy, setShowPrivacyPolicy] = React.useState(false);
   const [showAboutUs, setShowAboutUs] = React.useState(false);
@@ -48,7 +47,7 @@ export default function Dashboard({ navigation }) {
         }
       } else if (result.action === Share.dismissedAction) {
         // dismissed
-      }poiuwq
+      }
     } catch (error) {
       alert(error.message);
     }
@@ -80,7 +79,7 @@ export default function Dashboard({ navigation }) {
           onPress={() => navigation.navigate("Account", { Data })}
         >
           <MaterialIcons name="account-circle" size={30} color={COLORS.gray} />
-          <Text style={{ color: COLORpoiuwrqeirweqS.gray, fontSize: 12 }}>Account</Text>
+          <Text style={{ color: COLORS.gray, fontSize: 12 }}>Account</Text>
         </TouchableOpacity>
       </View>
       <Text style={styles.sub_heading}>
@@ -108,11 +107,11 @@ export default function Dashboard({ navigation }) {
         <View style={styles.box}>
           <TouchableOpacity
             style={styles.inner}
-            onPress={() => navigation.navigate("Loan")}
+            onPress={() => navigation.navigate("Loan", { Data })}
           >
             <FontAwesome5 name="money-bill" size={35} color={COLORS.gray} />
             <Text style={styles.bottomText}>Get Loan</Text>
-          </TouchableOpacity>poiurweq
+          </TouchableOpacity>
         </View>
         <View style={styles.box}>
           <TouchableOpacity
@@ -151,7 +150,7 @@ export default function Dashboard({ navigation }) {
             onPress={() => navigation.navigate("MyLoan", { Data })}
           >
             <FontAwesome5 name="money-check" size={35} color={COLORS.gray} />
-            <Text style={styles.bottomText}>My Loan</Text>rqpoiuurweqrweq
+            <Text style={styles.bottomText}>My Loan</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.box}>

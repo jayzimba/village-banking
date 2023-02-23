@@ -76,7 +76,7 @@ export default class Groups extends Component {
         this.state.group +
         " village banking groupp"
     );
-    this.props.navigation.navigate("Dashboard");
+    // this.props.navigation.navigate("Dashboard");
   };
 
   addNow() {
